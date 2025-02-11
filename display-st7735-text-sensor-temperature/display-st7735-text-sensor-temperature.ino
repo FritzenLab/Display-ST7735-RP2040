@@ -185,14 +185,19 @@ void loop() {
   tft.invertDisplay(false);
   delay(500);*/
   //float temperature= analogRead(A0) * 3.3 /4095 * 12;
-  float temperature= analogRead(A0);
+  int temperature= analogRead(A0) * 3.3 / 4095 * 100;
   tft.setTextSize(2);
   tft.setCursor(20, 60);
   tft.setTextColor(ST77XX_WHITE);
   //tft.println("     ");
-  tft.println(millis() / 1000);
+  tft.print(millis() / 1000);
+  tft.setTextSize(1);
+  tft.println(" seconds");
   tft.setCursor(20, 80);
+  tft.print("LM35= ");
+  tft.setTextSize(2);
   tft.print(temperature);
+  tft.println(" oC");
   delay(10);
   testdrawrects(ST77XX_BLACK);
   delay(10);
@@ -259,8 +264,8 @@ void testfastlines(uint16_t color1, uint16_t color2) {
 
 void testdrawrects(uint16_t color) {
   //tft.fillScreen(ST77XX_BLACK);
-  tft.fillRect(5, 50, 50, 60, color);
-  tft.drawRect(5, 50, 50, 60, color);
+  tft.fillRect(5, 50, 100, 60, color);
+  tft.drawRect(5, 50, 100, 60, color);
   
 }
 
